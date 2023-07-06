@@ -166,6 +166,7 @@ class _HomePageState extends State<HomePage> {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text("Coming soon"),
                 backgroundColor: Colors.indigoAccent,
+                duration: Duration(seconds: 2),
               ));},
             label: const Text('Add to Favorite'),
             icon: const Icon(Icons.favorite),
@@ -193,7 +194,6 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        // set the crossAxisAlignment property to center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -213,11 +213,11 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 8,
           ),
-          Text("[122:${ayat.number?.inSurah}]",
+          Text("Ayat ke-${ayat.number?.inSurah} dalam surah",
               textAlign: TextAlign.center,
               style: const TextStyle(
                   // fontFamily: 'Pacifico',
-                  color: Colors.white,
+                  color: Colors.white70,
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold)),
         ],

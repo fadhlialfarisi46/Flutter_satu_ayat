@@ -31,7 +31,7 @@ class _DetailPageState extends State<DetailPage> {
       ),
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: Scaffold(
             backgroundColor: Colors.transparent,
             body: SingleChildScrollView(
@@ -61,7 +61,7 @@ class _DetailPageState extends State<DetailPage> {
 
   Widget _playAudioWidget() {
     return Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.transparent),
                       //color is transparent so that it does not blend with the actual color specified
@@ -91,14 +91,17 @@ class _DetailPageState extends State<DetailPage> {
                               onPressed: () {
                                 audioPlayer.play(UrlSource(audioItem.urlMp3));
                               },
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.play_circle_rounded),
-                                  const SizedBox(
-                                    width: 8.0,
-                                  ),
-                                  Text(audioItem.qori)
-                                ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.play_circle_rounded),
+                                    const SizedBox(
+                                      width: 8.0,
+                                    ),
+                                    Text(audioItem.qori)
+                                  ],
+                                ),
                               ));
                         },
                       ),
@@ -109,7 +112,7 @@ class _DetailPageState extends State<DetailPage> {
 
   Widget _tafsirWidget() {
     return Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.transparent),
                       //color is transparent so that it does not blend with the actual color specified
@@ -154,7 +157,7 @@ class NoStackWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.transparent),
           //color is transparent so that it does not blend with the actual color specified
@@ -211,7 +214,7 @@ class StackWidget extends StatelessWidget {
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.transparent),
                     //color is transparent so that it does not blend with the actual color specified
@@ -264,6 +267,7 @@ class StackWidget extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Coming soon"),
                       backgroundColor: Colors.indigoAccent,
+                      duration: Duration(seconds: 2),
                     ));
                   },
                   child: const Icon(Icons.favorite),

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:satu_ayat/data/model/ayat.dart';
@@ -22,21 +21,27 @@ class NotificationHelper {
   Future<void> initNotification(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var initializationSettingsAndroid =
-    const AndroidInitializationSettings('img');
+    const AndroidInitializationSettings('app_icon');
 
-    var initializationSetting =
-    InitializationSettings(android: initializationSettingsAndroid);
+    var initializationSettingsIOS = const DarwinInitializationSettings(
+        requestAlertPermission: false,
+        requestBadgePermission: false,
+        requestSoundPermission: false
+    );
+
+    var initializationSetting = InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS
+    );
 
     // TODO
-    // await flutterLocalNotificationsPlugin.initialize(initializationSetting,
-    //     onSelectNotification: (String? payload) async {
-    //       if (payload != null) {
-    //         if (kDebugMode) {
-    //           print('notification payload: $payload');
-    //         }
-    //       }
-    //       selectNotificationSubject.add(payload ?? 'empty payload');
-    //     });
+    await flutterLocalNotificationsPlugin.initialize(initializationSetting,
+    onDidReceiveNotificationResponse: (NotificationResponse details) async {
+      final payload = details.payload;
+      if (payload != null) {
+        print('notification payload: ' + payload);
+      }
+      selectNotificationSubject.add(payload ?? 'empty payload');
+    });
   }
 
   Future<void> showNotification(
@@ -44,20 +49,24 @@ class NotificationHelper {
       Ayat ayat) async {
     var _channelId = "1";
     var _channelName = "channel_1";
-    var _channelDescription = "restaurant app channel";
+    var _channelDescription = "1 ayat channel";
 
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        _channelId, _channelName,
+        _channelId, _channelName, channelDescription: _channelDescription,
         importance: Importance.max,
         priority: Priority.high,
         ticker: 'ticker',
         styleInformation: const DefaultStyleInformation(true, true));
 
-    var platformChannelSpecifics =
-    NotificationDetails(android: androidPlatformChannelSpecifics);
+    var iOSPlatformChannelSpecifics = const DarwinNotificationDetails();
 
-    var titleNotification = "<b>Check this Restaurant!</b>";
-    var contentNotifaction = ayat.arab;
+    var platformChannelSpecifics = NotificationDetails(
+        android: androidPlatformChannelSpecifics,
+        iOS: iOSPlatformChannelSpecifics
+    );
+
+    var titleNotification = "<b>Check this ayat!</b>";
+    var contentNotifaction = ayat.translation;
 
     await flutterLocalNotificationsPlugin.show(
         0, titleNotification, contentNotifaction, platformChannelSpecifics,
@@ -71,4 +80,3 @@ class NotificationHelper {
     });
   }
 }
-

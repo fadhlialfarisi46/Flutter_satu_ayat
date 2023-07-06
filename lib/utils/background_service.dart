@@ -29,13 +29,12 @@ class BackgroundService {
       print('Alarm fired');
     }
 
-    final NotificationHelper _notificationhelper = NotificationHelper();
+    final NotificationHelper notificationhelper = NotificationHelper();
 
     var result = await ApiService().getDetailAyat();
-    var restaurant = result;
 
-    await _notificationhelper.showNotification(
-        flutterLocalNotificationsPlugin, restaurant);
+    await notificationhelper.showNotification(
+        flutterLocalNotificationsPlugin, result);
 
     _sendPort ??= IsolateNameServer.lookupPortByName(_isolateName);
     _sendPort?.send(null);

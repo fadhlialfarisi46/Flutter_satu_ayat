@@ -2,6 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:satu_ayat/data/model/ayat.dart';
 
+import '../widgets/custom_snackbar.dart';
+
 class DetailPage extends StatefulWidget {
   static const routeName = '/detail_page';
 
@@ -264,11 +266,7 @@ class StackWidget extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: FloatingActionButton(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Coming soon"),
-                      backgroundColor: Colors.indigoAccent,
-                      duration: Duration(seconds: 2),
-                    ));
+                    customSnackbar(context);
                   },
                   child: const Icon(Icons.favorite),
                 ),

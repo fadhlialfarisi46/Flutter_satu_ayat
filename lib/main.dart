@@ -14,6 +14,7 @@ import 'package:satu_ayat/provider/preferences_provider.dart';
 import 'package:satu_ayat/provider/scheduling_provider.dart';
 import 'package:satu_ayat/ui/detail_page.dart';
 import 'package:satu_ayat/ui/home_page.dart';
+import 'package:satu_ayat/ui/settings_page.dart';
 import 'package:satu_ayat/utils/background_service.dart';
 import 'package:satu_ayat/utils/notification_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,7 +35,6 @@ Future<void> main() async {
   if(Platform.isAndroid) {
     await AndroidAlarmManager.initialize();
   }
-
   await _notificationHelper.initNotification(flutterLocalNotificationsPlugin);
 
   runApp(const MyApp());
@@ -65,6 +65,7 @@ class MyApp extends StatelessWidget {
         initialRoute: HomePage.routeName,
         routes: {
           HomePage.routeName: (context) => const HomePage(),
+          SettingsPage.routeName: (context) => const SettingsPage(),
           DetailPage.routeName: (context) {
             final arg = ModalRoute.of(context)?.settings.arguments as Ayat;
             return DetailPage(ayat: arg);
@@ -73,6 +74,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-
-
 }

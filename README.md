@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/still_under_development-blue?style=plastic)
+
 # satu_ayat
 
 A new Flutter project for show 1 random ayat Al-Quran

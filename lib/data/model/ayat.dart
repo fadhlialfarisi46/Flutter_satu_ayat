@@ -43,6 +43,12 @@ class Ayat {
         UrlAudio("Muhammad Ayyoub", audio!.muhammadayyoub),
         UrlAudio("Muhammad Jibreel", audio!.muhammadjibreel),
       ];
+
+  List<TafsirList> tafsirList() => [
+    TafsirList(from: "Kemenag", content: tafsir!.kemenag.short),
+    TafsirList(from: "Quraish", content: tafsir!.quraish),
+    TafsirList(from: "Jalalayn", content: tafsir!.jalalayn),
+  ];
 }
 
 class Number {
@@ -138,6 +144,14 @@ class UrlAudio {
   String urlMp3;
 
   UrlAudio(this.qori, this.urlMp3);
+}
+
+class TafsirList {
+  String from;
+  String content;
+  bool isExpanded;
+
+  TafsirList({required this.from, required this.content, this.isExpanded = false});
 }
 
 class Tafsir {

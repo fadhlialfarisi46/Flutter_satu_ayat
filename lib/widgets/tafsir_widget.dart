@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../data/model/ayat.dart';
+import '../data/model/tafsir_list.dart';
 
 class TafsirWidget extends StatefulWidget {
   final List<TafsirList> tafsirList;
